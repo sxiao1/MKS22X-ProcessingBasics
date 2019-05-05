@@ -40,17 +40,17 @@ class Visualizer {
 
     //???WRITE THIS METHOD!!!
     //THESE ARE WRONG: They just illustrate how they could look
+    int a = 0;
     for(int i = 0; i < values.length; i++){
       if(values[i] > 0){
         fill(245, 2, 2);
-        rect(i, y+100, i + 40, values[i]);
+        rect(x+a, y+100 - values[i], 400/values.length, values[i]);
       }
       else{
         fill(110, 245, 2);
-        rect(i +60, y+100, i +40, values[i]);
+        rect(x+a, y+100 - values[i], 400/values.length, values[i]);
       }
-
-
+      a += 400/values.length;
     //Width of the visualizer is 400!
     }
 
@@ -61,7 +61,9 @@ class Visualizer {
     for (int i = 0; i < values.length; i++) {
       values[i] += speeds[i];
       //??? keep them values between max/min value
-      
+      if(values[i] > 100 || values[i] <-100){
+        speeds[i] = speeds[i] * -1;
+      }
       //??? reverse the speeds so they oscillate up/down when they reach max/min
 
       
@@ -76,5 +78,5 @@ void setup() {
 void draw() {
   background(255);
   v.display();
-  //v.update();
+  v.update();
 }
